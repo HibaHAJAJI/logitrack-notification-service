@@ -40,6 +40,7 @@ public class NotificationService {
     }
 
     public List<NotificationResponse> getAllNotifications() {
+
         return notificationRepository.findAll()
                 .stream()
                 .map(notification -> NotificationResponse.builder()
@@ -53,15 +54,4 @@ public class NotificationService {
                 .toList();
     }
 
-    public NotificationResponse getNotificationById(Long id) {
-        return null;
-    }
-
-    public List<NotificationResponse> getNotificationsByOrderId(Long orderId) {
-        return null;
-    }
-
-    public NotificationResponse markAsRead(Long id) {
-        return null;
-    }
 }
