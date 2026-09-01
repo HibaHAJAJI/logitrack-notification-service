@@ -6,7 +6,9 @@ import com.logitrack.notification_service.dto.NotificationResponse;
 import com.logitrack.notification_service.entity.Notification;
 import com.logitrack.notification_service.repository.NotificationRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -52,6 +54,20 @@ public class NotificationService {
                         .orderId(notification.getOrderId())
                         .build())
                 .toList();
+    }
+
+    public NotificationResponse getNotificationById(Long id) {
+        Notification notification = notificationRepository.findById(id)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Notification introuvable !"));
+
+        return NotificationResponse.builder()
+                .id(notification.getId())
+                .message(notification.getMessage())
+                .type(notification.getType())
+                .dateCreation(notification.getDateCreation())
+                .read(notification.isRead())
+                .orderId(notification.getOrderId())
+                .build();
     }
 
 }
