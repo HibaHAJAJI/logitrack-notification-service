@@ -34,4 +34,9 @@ public class NotificationController {
     public ResponseEntity<NotificationResponse> getNotificationById(@PathVariable Long id) {
         return ResponseEntity.ok(notificationService.getNotificationById(id));
     }
+
+    @PutMapping("/{id}/read")
+    public NotificationResponse markAsRead(@PathVariable Long id) {
+        return notificationService.markAsRead(id);
+    }
 }

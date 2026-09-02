@@ -42,4 +42,13 @@ public class NotificationService {
         return mapper.toResponse(notification);
     }
 
+    public NotificationResponse markAsRead(Long id) {
+        Notification notification = repository.findById(id).orElseThrow(() -> new ResponseStatusException(
+                        HttpStatus.NOT_FOUND, "Notification introuvable !"));
+
+        notification.setRead(true);
+        Notification saved = repository.save(notification);
+        return mapper.toResponse(saved);
+    }
+
 }
