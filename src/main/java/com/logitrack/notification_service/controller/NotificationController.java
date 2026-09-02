@@ -39,4 +39,9 @@ public class NotificationController {
     public NotificationResponse markAsRead(@PathVariable Long id) {
         return notificationService.markAsRead(id);
     }
+
+    @GetMapping("/order/{orderId}")
+    public List<NotificationResponse> findByOrderId(@PathVariable Long orderId) {
+        return notificationService.findByOrderId(orderId);
+    }
 }

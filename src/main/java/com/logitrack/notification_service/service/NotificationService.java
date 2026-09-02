@@ -51,4 +51,10 @@ public class NotificationService {
         return mapper.toResponse(saved);
     }
 
+    public List<NotificationResponse> findByOrderId(Long orderId) {
+        return repository.findByOrderId(orderId)
+                .stream()
+                .map(mapper::toResponse)
+                .toList();
+    }
 }
