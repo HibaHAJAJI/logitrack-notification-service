@@ -4,6 +4,7 @@ package com.logitrack.notification_service.controller;
 import com.logitrack.notification_service.dto.NotificationRequest;
 import com.logitrack.notification_service.dto.NotificationResponse;
 import com.logitrack.notification_service.service.NotificationService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,7 +21,7 @@ public class NotificationController {
     private final NotificationService notificationService;
 
     @PostMapping
-    public ResponseEntity<NotificationResponse> createNotification(@RequestBody NotificationRequest request) {
+    public ResponseEntity<NotificationResponse> createNotification( @Valid @RequestBody NotificationRequest request) {
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(notificationService.createNotification(request));
     }
