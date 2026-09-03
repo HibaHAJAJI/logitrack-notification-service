@@ -29,4 +29,10 @@ public class Notification {
     private boolean isRead;
 
     private Long orderId;
+
+    @PrePersist
+    public void prePersist() {
+        dateCreation = LocalDateTime.now();
+        isRead = false;
+    }
 }

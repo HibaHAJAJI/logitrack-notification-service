@@ -2,12 +2,13 @@ package com.logitrack.notification_service.dto;
 
 
 import com.logitrack.notification_service.enums.NotificationType;
+import lombok.Data;
 import lombok.Getter;
 
 import java.time.LocalDateTime;
 
 
-@Getter
+@Data
 public class NotificationResponse {
 
     private Long id;

@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -23,7 +24,14 @@ public class NotificationService {
     public NotificationResponse createNotification(NotificationRequest request) {
 
         Notification notification =mapper.toEntity(request);
+        notification.setDateCreation(LocalDateTime.now());
+        notification.setRead(false);
+
         Notification saved = repository.save(notification);
+
+        NotificationResponse response = mapper.toResponse(saved);
+
+
         return mapper.toResponse(saved);
     }
 
